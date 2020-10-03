@@ -3,15 +3,33 @@
 
     <div id="survivor" class="row">
         <div class="col-sm-12">
-          <h1 class="page-header" > Datos </h1>
+          <h1 class="page-header" > Gestion de Productos </h1>
         </div>
         <div class="col-sm-12">
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <b>Nombre del Producto</b> (Nombre, Estado, Cantidad, Descripcion, Bodega)
+              <input type="text" class="form-control" placeholder="Escribe Aqui" v-model="query" v-on:keyup="getKey()" name="" placeholder=" " value="">
+            </div>
+          </div>
           <div class="form-group">
-            <input type="text" class="form-control" v-model="query" v-on:keyup="getKey()" name="" placeholder=" " value="">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="Data" class="custom-control-input" v-on:click.prevent="ChoseSelection('3')"  id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Mostrar Todos</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="Data" class="custom-control-input" v-on:click.prevent="ChoseSelection('1')" id="customCheck2">
+              <label class="custom-control-label" for="customCheck2">Activos</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="Data" class="custom-control-input" v-on:click.prevent="ChoseSelection('0')" id="customCheck3">
+              <label class="custom-control-label" for="customCheck3">Inactivos</label>
+            </div>
           </div>
           <div class="form-group float-right">
+
             <a href="#" class="btn btn-primary pull-right"  data-toggle="modal" data-target="#create" >
-               Nuevo Registro
+               Crear Producto
             </a>
           </div>
         </div>
@@ -23,7 +41,8 @@
                 <th scope="col">Nombre </th>
                 <th scope="col">Bodega</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">Observaciones</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Editar</th>
                 <th scope="col">Estado</th>
                 <th colspan="2" >
                     &nbsp;
@@ -36,6 +55,17 @@
                 <td> @{{product.Bodega}} </td>
                 <td> @{{product.Cantidad}} </td>
                 <td> @{{product.Observaciones}} </td>
+                <td>
+                    <button type="button"
+                            class="btn btn-warning"
+                            name="button"
+                            data-toggle="modal"
+                            data-target="#update"
+                             v-on:click.prevent="updateDates(product)">
+                      <i class="glyphicon glyphicon-pencil" ></i>
+                      Editar
+                    </button>
+                </td>
                 <td width="10px" >
 
                   <button type="button" v-if="product.Estados === '0'" class="btn btn-danger" v-on:click.prevent="updateProducts(product)" name="button">
@@ -72,7 +102,7 @@
       				</li>
       			</ul>
       		</nav>
-          @include('create')
+          @include('modales')
         </div>
 
     </div>

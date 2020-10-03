@@ -20,7 +20,9 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('products', 'TaskController',['except'=>'edit', 'show', 'store']);
+Route::resource('products', 'TaskController',['except'=>'edit']);
+
+Route::get('Update_Products', 'TaskController@ActualizarDatos');
 
 // Route::get('/products/update/{id}', function (Request $request, $id) {
 //
